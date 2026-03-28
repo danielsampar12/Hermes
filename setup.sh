@@ -62,17 +62,24 @@ echo "     He will not write your code for you — he will make sure you underst
 echo "     every decision, call out bad patterns, and ask questions before charging in."
 echo "     Wise, patient, and annoyingly right most of the time."
 echo ""
-echo "  2. Ares (implementer)"
+echo "  2. Athena (architect / reviewer)"
+echo "     Goddess of wisdom, strategy, and craftsmanship. She defeated Ares in battle."
+echo "     Twice. She is not here to teach you or implement for you — she is here to"
+echo "     look at your code from the outside and tell you what you don't want to hear."
+echo "     Architecture, technical debt, wrong abstractions — nothing gets past her."
+echo ""
+echo "  3. Ares (implementer)"
 echo "     God of war. Passionate, fierce, and not exactly known for patience."
 echo "     His peers once trapped him in a bronze jar — he did not enjoy that."
 echo "     Point him at a task and get battle-ready code. Fast, direct, no detours."
 echo "     Just... give him clear instructions. For everyone's sake."
 echo ""
-prompt "Choose your companion (1 or 2, default: 1): "
+prompt "Choose your companion (1, 2 or 3, default: 1): "
 read -r ROLE_CHOICE
 
 case "${ROLE_CHOICE:-1}" in
-  2) ROLE="ares";   ROLE_DISPLAY="Ares" ;;
+  2) ROLE="athena"; ROLE_DISPLAY="Athena" ;;
+  3) ROLE="ares";   ROLE_DISPLAY="Ares" ;;
   *) ROLE="chiron"; ROLE_DISPLAY="Chiron" ;;
 esac
 
@@ -237,6 +244,7 @@ mkdir -p "$HOME/.config/aichat/roles"
 
 # Copy all roles so the user can switch later
 cp "$SCRIPT_DIR/roles/chiron.md" "$HOME/.config/aichat/roles/chiron.md"
+cp "$SCRIPT_DIR/roles/athena.md" "$HOME/.config/aichat/roles/athena.md"
 cp "$SCRIPT_DIR/roles/ares.md"   "$HOME/.config/aichat/roles/ares.md"
 
 cat > "$HOME/.config/aichat/config.yaml" << EOF
@@ -288,6 +296,7 @@ ${ASSISTANT_NAME_LOWER}() {
     new)     aichat --role $ROLE ;;
     list)    aichat --list-sessions ;;
     chiron)  aichat --role chiron --session "\${2:-default}" ;;
+    athena)  aichat --role athena --session "\${2:-default}" ;;
     ares)    aichat --role ares --session "\${2:-default}" ;;
     *)       aichat --role $ROLE --session "\${1:-default}" ;;
   esac
@@ -309,6 +318,7 @@ echo "  Then:"
 echo "    ${ASSISTANT_NAME_LOWER} start            # wake up"
 echo "    ${ASSISTANT_NAME_LOWER} my-project       # start or resume a session"
 echo "    ${ASSISTANT_NAME_LOWER} chiron my-proj   # summon Chiron for this session"
+echo "    ${ASSISTANT_NAME_LOWER} athena my-proj   # summon Athena for this session"
 echo "    ${ASSISTANT_NAME_LOWER} ares my-proj     # summon Ares for this session"
 echo "    ${ASSISTANT_NAME_LOWER} list             # see all sessions"
 echo "    ${ASSISTANT_NAME_LOWER} stop             # rest"

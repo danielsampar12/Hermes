@@ -63,6 +63,15 @@ Son of Kronos, teacher of heroes. He trained Achilles, Jason, and Asclepius — 
 - **Will push back?** yes — if you're heading toward a bad pattern he'll tell you why before touching anything
 - **Explains:** key decisions as he writes, so you stay in the loop
 
+### 🦉 Athena — architect / reviewer
+
+Goddess of wisdom, strategy, and craftsmanship. She defeated Ares in battle. Twice. She is not here to teach you or implement for you — she's the senior engineer at the end of the PR who has seen this pattern fail before and is not letting it through without a conversation.
+
+- **Style:** reviews from the outside in — structure, abstractions, and whether you're solving the right problem
+- **Best for:** code reviews, architecture decisions, spotting technical debt before it bites
+- **Will push back?** yes, and she'll tell you exactly why it will hurt later — with an alternative
+- **Explains:** the systemic risk, not just the immediate bug
+
 ### ⚔️ Ares — implementer
 
 God of war. Passionate, fierce, and not exactly known for patience. His peers trapped him in a bronze jar once — he did not enjoy that.
@@ -91,6 +100,7 @@ hermes new                # fresh unnamed session
 hermes list               # see all sessions
 
 hermes chiron my-project  # summon Chiron for this session
+hermes athena my-project  # summon Athena for this session
 hermes ares my-project    # summon Ares for this session
 ```
 

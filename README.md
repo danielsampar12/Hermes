@@ -18,7 +18,8 @@
   <a href="#companions">Companions</a> •
   <a href="#usage">Usage</a> •
   <a href="#configuration">Configuration</a> •
-  <a href="#hardware--models">Hardware</a>
+  <a href="#hardware--models">Hardware</a> •
+  <a href="#roadmap">Roadmap</a>
 </p>
 
 </div>
@@ -164,6 +165,12 @@ The setup script auto-detects your hardware and recommends the best model.
 ollama list              # see downloaded models
 ollama rm <model-name>   # free up space
 ```
+
+## Roadmap
+
+- [ ] RAG support — point a companion at your project directory and it indexes it automatically, no more pasting files manually
+- [ ] Tune Ares and Athena roles
+- [ ] Web search support — fetch docs and inject them into context on demand
 
 ---
 

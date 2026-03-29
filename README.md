@@ -47,6 +47,9 @@ chmod +x setup.sh
 
 The script will introduce itself, ask for a name, let you pick your companion, detect your hardware, pull the right model, and configure everything. Reload your shell when it's done:
 
+> [!IMPORTANT]
+> The model download can be **10–20GB** depending on your hardware. Make sure you're on a good connection and have time — this is a one-time step.
+
 ```bash
 source ~/.zshrc  # or ~/.bashrc
 ```

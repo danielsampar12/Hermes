@@ -35,7 +35,8 @@ Run the setup once, pick your companion, and get to work.
 - [Homebrew](https://brew.sh) — required on macOS. On Linux the script handles everything without it.
 
 ## Install
-
+> [!IMPORTANT]
+> The model download can be **10–20GB** depending on your hardware. Make sure you're on a good connection and have time — this is a one-time step.
 ```bash
 git clone https://github.com/danielsampar12/Hermes.git ~/ai/odin
 cd ~/ai/odin
@@ -48,9 +49,6 @@ The script will introduce itself, ask for a name, let you pick your companion, d
 ```bash
 source ~/.zshrc  # or ~/.bashrc
 ```
-
-> [!IMPORTANT]
-> The model download can be **10–20GB** depending on your hardware. Make sure you're on a good connection and have time — this is a one-time step.
 
 ## Companions
 

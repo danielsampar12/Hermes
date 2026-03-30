@@ -203,7 +203,7 @@ ollama rm <model-name>   # free up space
 - [ ] RAG support — point a companion at your project directory and it indexes it automatically, no more pasting files manually
 - [ ] Tune Thor, Tyr and Loki roles
 - [ ] Web search support — fetch docs and inject them into context on demand
-- [ ] Everything else
+- [ ] Anything else
 - [ ] Windows support
 
 ---

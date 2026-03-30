@@ -13,13 +13,13 @@
 *and a god who invented writing the hard way.*
 
 <p>
-  <a href="#uninstall">Uninstall</a> •
   <a href="#requirements">Requirements</a> •
   <a href="#install">Install</a> •
   <a href="#companions">Companions</a> •
   <a href="#usage">Usage</a> •
   <a href="#configuration">Configuration</a> •
   <a href="#hardware--models">Hardware</a> •
+  <a href="#uninstall">Uninstall</a> •
   <a href="#roadmap">Roadmap</a>
 </p>
 
@@ -28,15 +28,6 @@
 Odin sets up a fully offline AI companion that lives in your terminal. Your code never leaves your machine. No API keys, no subscriptions, no sending your half-finished startup idea to a server farm somewhere.
 
 Run the setup once, pick your companion, and get to work.
-
-## Uninstall
-
-```bash
-cd ~/ai/odin
-./uninstall.sh
-```
-
-Removes Ollama, aichat, configs, and the shell function. Asks before touching models and sessions since those are large or personal.
 
 ## Requirements
 
@@ -150,6 +141,15 @@ cp ~/ai/odin/roles/baldur.md ~/.config/aichat/roles/baldur.md
 ```
 
 **aichat config** lives at `~/.config/aichat/config.yaml` (Linux) or `~/Library/Application Support/aichat/config.yaml` (macOS).
+
+## Uninstall
+
+```bash
+cd ~/ai/odin
+./uninstall.sh
+```
+
+Removes Ollama, aichat, configs, and the shell function. Asks before touching models and sessions since those are large or personal.
 
 ## Hardware & models
 

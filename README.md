@@ -95,7 +95,7 @@ God of thunder. Direct, powerful, and not exactly known for overthinking. The ha
 - **Will push back?** only if something is genuinely wrong — one question, no more
 - **Explains:** only when the why isn't obvious from the code itself
 
-### 🔥 Loki — chaos agent
+### 🃏 Loki — chaos agent
 
 > [!WARNING]
 > Not recommended for production. Review everything he gives you. You have been warned.

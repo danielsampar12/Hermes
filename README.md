@@ -30,6 +30,15 @@ Odin sets up a fully offline AI companion that lives in your terminal. Your code
 
 Run the setup once, pick your companion, and get to work.
 
+> [!WARNING]
+> **Odin v1 is legacy and no longer actively maintained.**
+>
+> This branch contains the original shell-based version of Odin. It works, but it is flaky and may break depending on your local setup.
+>
+> **Odin v2 is currently in progress on the `v2` branch** and will replace this version with a cleaner architecture, better reliability, and a proper CLI.
+>
+> If you're exploring the project, check out `v2` for the latest direction. Expect work-in-progress code.
+
 ## Requirements
 
 - **macOS or Linux**

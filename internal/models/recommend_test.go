@@ -54,6 +54,30 @@ func TestRecommendCodingModel(t *testing.T) {
 			wantFallback:    "qwen2.5-coder:14b-instruct-q5_K_M",
 			reasonSubstring: "larger coding-model tier",
 		},
+		{
+			name:            "apple silicon 16gb",
+			ramGB:           16,
+			gpu:             system.GPUInfo{AppleSilicon: true},
+			wantModel:       "qwen2.5-coder:7b",
+			wantFallback:    "qwen2.5-coder:3b",
+			reasonSubstring: "Apple Silicon",
+		},
+		{
+			name:            "apple silicon 32gb",
+			ramGB:           32,
+			gpu:             system.GPUInfo{AppleSilicon: true},
+			wantModel:       "qwen2.5-coder:14b-instruct-q5_K_M",
+			wantFallback:    "qwen2.5-coder:7b",
+			reasonSubstring: "unified memory",
+		},
+		{
+			name:            "apple silicon 48gb",
+			ramGB:           48,
+			gpu:             system.GPUInfo{AppleSilicon: true},
+			wantModel:       "qwen3-coder:30b",
+			wantFallback:    "qwen2.5-coder:14b-instruct-q5_K_M",
+			reasonSubstring: "largest coding-model tier",
+		},
 	}
 
 	for _, tc := range testCases {

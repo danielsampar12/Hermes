@@ -3,6 +3,7 @@ package system
 import (
 	"context"
 	"fmt"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -12,12 +13,23 @@ import (
 type GPUInfo struct {
 	CommandInstalled bool
 	CommandPath      string
-	Detected         bool
+	Detected         bool // a discrete GPU (NVIDIA) with a known VRAM figure
+	AppleSilicon     bool // Apple Silicon GPU: Metal-accelerated, unified memory
 	VRAMGB           int
 	Summary          string
 }
 
 func DetectGPU(ctx context.Context) GPUInfo {
+	// Apple Silicon has an integrated, Metal-accelerated GPU with unified memory.
+	// There's no nvidia-smi and no discrete VRAM figure, so we detect it
+	// separately and let the recommender size models from unified (system) memory.
+	if isAppleSilicon(ctx) {
+		return GPUInfo{
+			AppleSilicon: true,
+			Summary:      "Apple Silicon GPU detected (Metal, unified memory)",
+		}
+	}
+
 	command := DetectCommand("nvidia-smi")
 	info := GPUInfo{
 		CommandInstalled: command.Installed,
@@ -70,4 +82,20 @@ func (g GPUInfo) CommandStatus() plugins.Status {
 		Installed: g.CommandInstalled,
 		Path:      g.CommandPath,
 	}
+}
+
+// isAppleSilicon reports whether the host is an Apple Silicon Mac. We can't rely
+// on runtime.GOARCH: an amd64 Go toolchain running under Rosetta reports "amd64"
+// even on Apple Silicon. hw.optional.arm64 reflects the hardware, not the process.
+func isAppleSilicon(ctx context.Context) bool {
+	if runtime.GOOS != "darwin" {
+		return false
+	}
+
+	output, err := RunCommand(ctx, "", "sysctl", "-n", "hw.optional.arm64")
+	if err != nil {
+		return false
+	}
+
+	return strings.TrimSpace(output) == "1"
 }

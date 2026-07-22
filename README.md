@@ -221,10 +221,10 @@ The setup script auto-detects your hardware and recommends the best model.
 | NVIDIA 12–16GB VRAM | `qwen2.5-coder:14b-instruct-q5_K_M` | `q4_K_M` |
 | NVIDIA 8GB VRAM | `qwen2.5-coder:7b` | `qwen2.5-coder:7b` |
 | NVIDIA <8GB VRAM | `qwen2.5-coder:3b` | `qwen2.5-coder:3b` |
-| Apple Silicon 48GB+ | `qwen3-coder:30b` | `qwen2.5-coder:32b` |
-| Apple Silicon 32GB | `qwen3-coder:30b` | `qwen2.5-coder:14b-instruct-q5_K_M` |
-| Apple Silicon 16GB | `qwen2.5-coder:14b-instruct-q5_K_M` | `q4_K_M` |
-| Apple Silicon 8GB | `qwen2.5-coder:7b` | `qwen2.5-coder:3b` |
+| Apple Silicon 48GB+ | `qwen3-coder:30b` | `qwen2.5-coder:14b-instruct-q5_K_M` |
+| Apple Silicon 32GB | `qwen2.5-coder:14b-instruct-q5_K_M` | `qwen2.5-coder:7b` |
+| Apple Silicon 16GB | `qwen2.5-coder:7b` | `qwen2.5-coder:3b` |
+| Apple Silicon 8GB | `qwen2.5-coder:3b` | `qwen2.5-coder:3b` |
 | Intel Mac / no GPU | `qwen2.5-coder:7b` | `qwen2.5-coder:3b` |
 
 **Why these models:**

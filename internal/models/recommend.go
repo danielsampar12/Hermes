@@ -17,6 +17,48 @@ type Recommendation struct {
 // The goal is a safe default for local development, not the largest model
 // that might barely fit on a given machine.
 func RecommendCodingModel(ramGB int, gpu system.GPUInfo) Recommendation {
+	// Apple Silicon: the GPU shares system memory (unified memory) and is
+	// Metal-accelerated, so we size models from total RAM rather than a discrete
+	// VRAM figure. Defaults stay conservative — a model that fits with headroom
+	// beats one that barely loads and then thrashes.
+	if gpu.AppleSilicon {
+		switch {
+		case ramGB >= 48:
+			return Recommendation{
+				Recommended: "qwen3-coder:30b",
+				Fallback:    "qwen2.5-coder:14b-instruct-q5_K_M",
+				Reason:      fmt.Sprintf("Detected Apple Silicon with about %dGB of Metal-accelerated unified memory, enough to run Odin's largest coding-model tier.", ramGB),
+			}
+		case ramGB >= 32:
+			return Recommendation{
+				Recommended:    "qwen2.5-coder:14b-instruct-q5_K_M",
+				Fallback:       "qwen2.5-coder:7b",
+				OptionalLarger: "qwen3-coder:30b",
+				Reason:         fmt.Sprintf("Detected Apple Silicon with about %dGB of Metal-accelerated unified memory; the 14B tier is a strong default, with the 30B available if you want to push it.", ramGB),
+			}
+		case ramGB >= 16:
+			return Recommendation{
+				Recommended:    "qwen2.5-coder:7b",
+				Fallback:       "qwen2.5-coder:3b",
+				OptionalLarger: "qwen2.5-coder:14b-instruct-q5_K_M",
+				Reason:         fmt.Sprintf("Detected Apple Silicon with about %dGB of Metal-accelerated unified memory; Odin defaults to the 7B tier to leave memory headroom, with the 14B as an optional larger tier.", ramGB),
+			}
+		case ramGB >= 8:
+			return Recommendation{
+				Recommended:    "qwen2.5-coder:3b",
+				Fallback:       "qwen2.5-coder:3b",
+				OptionalLarger: "qwen2.5-coder:7b",
+				Reason:         fmt.Sprintf("Detected Apple Silicon with about %dGB of Metal-accelerated unified memory; the 3B tier is the safe default at this size, with the 7B as an optional step up.", ramGB),
+			}
+		default:
+			return Recommendation{
+				Recommended: "qwen2.5-coder:3b",
+				Fallback:    "qwen2.5-coder:3b",
+				Reason:      fmt.Sprintf("Detected Apple Silicon with about %dGB of unified memory, so Odin is staying with the lightest coding tier.", ramGB),
+			}
+		}
+	}
+
 	if gpu.Detected {
 		switch {
 		case gpu.VRAMGB >= 20:
